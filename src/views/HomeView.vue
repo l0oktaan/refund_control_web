@@ -1,5 +1,4 @@
-<template>
-  
+<template>  
   <div>
     <h1>{{ message }}</h1>
     <input v-model="message" placeholder="Type something..." />
@@ -12,7 +11,7 @@ import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
   setup() {
-    const message = ref<string>('Hello, Vue 3 with TypeScript! x');
+    const message = ref<string>('สวัสดี ภาษาไทย');
 
     const clearMessage = () => {
       message.value = '';
@@ -22,3 +21,6 @@ export default defineComponent({
   },
 });
 </script>
+<style scoped>
+
+</style>
