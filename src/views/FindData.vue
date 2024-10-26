@@ -1,11 +1,14 @@
 <template lang="">
     <div>
-        <h1>ค้นหาข้อมูล</h1>
+        <find-deposit></find-deposit>
     </div>
 </template>
 <script>
+import FindDeposit from '@/components/FindDeposit.vue'
 export default {
-    
+    components: {
+        FindDeposit
+    }
 }
 </script>
 <style lang="">

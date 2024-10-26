@@ -1,123 +1,109 @@
 <template>   
-<div class="container">
-        <top-header></top-header>
-        <div class="main-content">
-            <left-menu></left-menu>
-            <div class="content">              
-              <router-view/>
-            </div>
-            
-        </div>
-        <footer class="footer">Footer</footer>
-
-    </div>   
-     
-</template>
-
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
-import TopHeader from '@/components/TopHeader.vue'
-import LeftMenu from '@/components/LeftMenu.vue'
-export default defineComponent({
-  name: 'home',
-
-  data () {
-    return {
-      //
+  
+  <!-- <top-header id="top-header"></top-header> -->
+  
+   <div class="container">
+   <top-header id="top-header"></top-header>
+    <!-- <aside id="sidebar">
+      <div class="logo">&#9812;</div>
+      <button type="button" id="resize">
+        &#9776;
+      </button>
+    </aside> -->
+    <left-menu class="sidebar"></left-menu>
+    <div id="content">              
+      <router-view/>
+    </div>
+    <footer id="footer">Footer</footer>
+   </div>
+  
+  
+      
+       
+  </template>
+  
+  <script lang="ts">
+  import { defineComponent, ref } from 'vue';
+  import TopHeader from '@/components/TopHeader.vue'
+  import LeftMenu from '@/components/LeftMenu.vue'
+  export default defineComponent({
+    name: 'home',
+  
+    data () {
+      return {
+        //
+      }
+    },
+    components:{
+      TopHeader,
+      LeftMenu
     }
-  },
-  components:{
-    TopHeader,
-    LeftMenu
+  })
+  </script>
+  <style scoped>
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      
   }
-})
-</script>
-<style scoped>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    
-}
-
-body, html {
-    height: 100%;
-    background-color: #F5F7FA;
-}
-
-.container {
+  
+.container{
+    background-color: #f3f3f3;
+    min-block-size: 100vh;
+    min-block-size: 100dvh;
     display: grid;
-    grid-template-rows: auto 1fr auto;
-    height: 100vh;
+
+    grid-template-columns: 15rem 1fr;
+    grid-template-rows: auto 1fr auto;    
+    grid-template-areas:
+    "header header"
+    "sidebar main"
+    "footer footer";
+    grid-template-areas:
+      "sidebar header"
+      "sidebar main"
+      "footer footer";
+    transition: grid-template-columns 0.3s ease;
 }
 
-
-
-.main-content {
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    gap: 20px;
-    padding: 20px;
-}
-
-.menu {
-    background-color: #1565C0;
-    color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+/* body.sb-expand {
+  grid-template-columns: 12.5rem 1fr;
+} */
+  #top-header{
+    grid-area: header;
+    background-color: #fff;
+    padding: 1.25rem;
+  }
+  .sidebar{
     position: relative;
-}
-
-.menu-mini {
-    background-color: #0D47A1;
-    color: white;
-    padding: 10px;
-    writing-mode: vertical-rl;
-    text-align: center;
+    grid-area: sidebar;
+    color: #fff;
+    background-color: #1d1d29;
+  }
+  #sidebar button {
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -50px;
-    width: 40px;
-    border-radius: 8px 0 0 8px;
+    inset: 4.5rem -0.75rem auto auto;
+    width: 1.5rem;
+    aspect-ratio: 1;
+    background-color: #fff;
+    border: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  #content{
+    grid-area:main;
+    padding: 10px;
+  }
+  #footer{
+    grid-area: footer;
+    background-color: #fff;
+    padding: 1.25rem;
+  }
+  .logo {
     display: flex;
-    align-items: center;
     justify-content: center;
-    font-size: 0.8em;
-    transition: background-color 0.3s ease;
-}
-
-.menu-mini:hover {
-    background-color: #003c8f;
-}
-
-.content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.footer {
-    background-color: #2196F3;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    font-size: 1em;
-    font-weight: 600;
-    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .main-content {
-        grid-template-columns: 1fr;
-    }
-
-    .menu {
-        display: none;
-    }
-}
-
-</style>
+    font-size: 3rem;
+    line-height: 1.3;
+  }
+  </style>

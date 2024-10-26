@@ -1,48 +1,71 @@
 <template lang="">
-    <aside class="menu">
-      
-      <v-list   
-        class="no-background"         
-          item-title="ค้นหาข้อมูล"            
-        >      
-        <v-list-item          
-          v-for="(item, i) in items"
-          :key="i"
-          :value="item"     
-        >
-        <router-link :to="item.route">
-          <template v-slot:prepend>
-            <v-icon :icon="item.icon"></v-icon>
-          </template>
-          <v-list-item-title v-text="item.text"></v-list-item-title>
-        </router-link>
-        </v-list-item>
+    
+      <div class="logo">
+        <img :src="logo" alt="Logo">
+      </div>
+      <v-list class="menu">
+        
+          <v-list-item
+            v-for="(item, index) in menuItems"
+            :key="index"
+            :to="item.link"
+            prepend-icon
+          >
+            <!-- <template v-slot:prepend>
+              <v-icon>{{ item.icon }}</v-icon>
+            </template> -->
+            <template v-slot:prepend>
+              <v-icon :icon="item.icon"></v-icon>
+            </template>
+
+            <v-list-item-title v-text="item.text"></v-list-item-title>
+          </v-list-item>        
       </v-list>
-  </aside>
+    
+    
 </template>
 <script>
+import { ref, onMounted } from 'vue';
+import { useDisplay } from 'vuetify';
+import logo from '@/assets/cgd.png'
 export default {
-  data: () => ({
-      items: [
-        { text: 'Dashboard', icon: 'mdi-view-dashboard',route: '/' },
-        { text: 'ค้นหาข้อมูล', icon: 'mdi-magnify',route: 'find' },
-        { text: 'ภาษีสรรพสามิต', icon: 'mdi-account-cash',route: 'excise' },
-        { text: 'ค่าปรับ และอื่น ๆ', icon: 'mdi-clipboard-text',route: 'penalty' },
-      ],
-    }),
+  setup(){
+    const drawer = ref(true);
+    const miniVariant = ref(false);
+    const display = useDisplay();
+    const menuItems = [
+        { text: 'Dashboard', icon: 'mdi-view-dashboard',link: '/dashboard' },
+        { text: 'ค้นหาข้อมูล', icon: 'mdi-magnify',link: '/find' },
+        { text: 'ภาษีสรรพสามิต', icon: 'mdi-account-cash',link: '/excise' },
+        { text: 'ค่าปรับ และอื่น ๆ', icon: 'mdi-clipboard-text',link: '/penalty' },
+      ];
+    onMounted(() => {
+      miniVariant.value = display.mobile;
+    });
+    const toggleDrawer = () => {
+      miniVariant.value = !miniVariant.value;
+    };
+    return { drawer, miniVariant, menuItems, toggleDrawer,logo };
+  },
+  
+  
 }
 </script>
 <style scoped>
   .no-background {
-    color: white;
-    background-color: #1565C0 !important; /* เคลียร์สีพื้นหลัง */
+    
+    background-color: #1d1d29!important;
+  }
+  .logo{
+    color: #ffffff;
+    background-color: #1d1d29; 
   }
     .menu {
-    background-color: #1565C0;
-    color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      color: #ffffff;
+      background-color: #1d1d29; 
+      padding: 2px;
+    
+    
 }
 
 .menu ul {
@@ -63,14 +86,30 @@ export default {
 }
 
 .menu a {
-    color: rgb(169, 184, 207);
+    color: rgb(255, 255, 255);
     text-decoration: none;
-    font-size: 1em;
+    
 }
+
+
 
 .menu a:hover {
-  color: white;
+  
     text-decoration: none;
 }
 
+
+
+
+.logo{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  background-color: #1d1d29; 
+}
+.logo img{
+  padding: 10px;
+  max-width: 75px;
+}
 </style>

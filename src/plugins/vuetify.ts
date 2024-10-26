@@ -22,9 +22,16 @@ export default createVuetify({
   components,
   directives,
   theme: {
-    defaultTheme: "light",
+    defaultTheme: "customTheme",
     themes: {
-      
+      customTheme: {
+        dark: false,
+        colors: {
+          background: '#f0f0f0', // กำหนดสีพื้นหลัง
+          primary: '#1976D2',
+          secondary: '#424242',
+        },
+      },
     },
   },
 });

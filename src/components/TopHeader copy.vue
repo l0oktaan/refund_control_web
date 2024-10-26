@@ -1,8 +1,9 @@
 <template lang="">
     <header class="top">
-    
-        <p class="system-name">ระบบควบคุมวงเงินการขอถอนคืนเงินรายได้แผ่นดิน</p>
-    
+    <div class="top-left">
+        <img :src="logo" alt="Logo" class="logo">
+        <span class="system-name">ระบบควบคุมวงเงิน</span>
+    </div>
     <div class="top-right">
         <nav class="quick-menu">
             <a href="#">Dashboard</a>
@@ -28,12 +29,12 @@ export default defineComponent({
 })
 </script>
 <style scoped>
-.top {
+    .top {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #2196F3;
-    color: rgb(0, 0, 0);
+    color: white;
     padding: 10px 20px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -50,7 +51,7 @@ export default defineComponent({
 }
 
 .system-name {
-    font-size: 1.4em;
+    font-size: 1.8em;
     font-weight: 500;
 }
 
@@ -60,7 +61,7 @@ export default defineComponent({
 }
 
 .quick-menu a {
-    color: rgb(0, 0, 0);
+    color: rgb(150, 214, 252);
     text-decoration: none;
     margin-right: 20px;
     font-size: 1em;
@@ -68,7 +69,7 @@ export default defineComponent({
 }
 
 .quick-menu a:hover {
-    
+    color: white;
     text-decoration: node;
 }
 
